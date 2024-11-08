@@ -2,40 +2,36 @@
 #include <cmath>
 using namespace std;
 
-int main(){
-	int i;
-	double x1, x2, xr, funca, funcb, funcr;
-	
-	x1 = 2;
-	x2 = 3;
 
-	funca = x1*x1 - 5;
-	funcb = x2*x2 - 5;
-	while(true){
-		if(funca*funcb < 0){
-			xr = (x1+x2)/2;
-			funcr = xr*xr - 5;
-
-			if (funcr*funca <0){
-				x2 = xr;
-			}
-			else{
-				x1 = xr;
-			}
-		}
-	if(abs(x2-x1) <= 0.00001){
-		break;
-	}
-
-	cout << i << " " << xr << endl;
-	cout << x2-x1 << endl;
-	i++; 
+double f(double x){
+	return x*x -5;  
 }
 
+void bissec(double x1, double x2, double tol){
+	double x;
+	while(fabs(x2-x1) > tol){
+		x = (x1+x2)/2;
+		if(f(x1)*f(x) < 0){
+			x2 = x;
+		}else{
+			x1 = x;
+		}
+	}
+	cout << x << endl;
 
-cout << i << " " << xr << endl;
+}
 
+int main(){
+	int i;
+	double x1, x2, tol;
+
+	x1 = 2;
+	x2 = 3;
+	tol = 0.00001;
+
+	bissec(x1, x2, tol);
 
 	return 0;
 }
+
 
