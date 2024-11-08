@@ -1,28 +1,42 @@
 #include <iostream>
 #include <cmath>
-#include <iomanip>
 using namespace std;
 
-int main() {
-	int j = 0; 
-	double x1, x2, xr, fx1,fx2,fxr;
-	x1 = 1; 
-	x2 = 2;
-	fx1 = x1*x1 - 3;
-	fx2 = x2*x2 - 3;
+
+double f(double x) {
+	return x*x - 5;
+}
+
+
+void metodoFalsi(double x1, double x2, double tol) {
+	double fx1 = f(x1);
+	double fx2 = f(x2);
+	double x = (x2*fx1 - x1*fx2)/(fx1-fx2);
+	double fx = f(x);
 	
-	while(abs(x1-x2) >= 0.00001){
-		xr = (x2*fx1 - x1*fx2)/(fx1 - fx2);
-		fxr = xr*xr - 3;
-		if (fx1 * fxr < 0){
-			x2 = xr;
-			
-		}else{
-			x1 = xr;
+	while (abs(fx) > tol) {
+		if (fx1*fx < 0) {
+			x2 = x;
+			fx2 = fx;
+		} else {
+			x1 = x;
+			fx1 = fx;
 		}
-	j++;
-	cout << j << setprecision(11) << " " << xr << endl;
-	
+		x = (x2*fx1 - x1*fx2)/(fx1-fx2);
+		fx = f(x);
+
+		
 	}
+	
+	cout << x << endl;
+}
+
+int main() {
+	
+	double x1 = 2;
+	double x2 = 3;
+	double tol = 0.00001;
+	
+	metodoFalsi(x1, x2, tol);
 	return 0;
 }
