@@ -17,7 +17,7 @@ Este repositório contém implementações de métodos numéricos em C++.
 Para compilar os arquivos, utilize um compilador C++ como o g++:
 
 ```sh
- g++ -o bisseccao bisseccao.cpp -lm
+ g++ -o bisseccao bisseccao.cpp 
  ./bisseccao
 ```
 
